@@ -21,6 +21,7 @@ conn = mongo_connect(MONGO_URI)
 
 coll = conn[DATABASE][COLLECTION]
 
+"""" Insert many new lines to database (kept to remember)
 new_docs = [{
      "first": "terry",
      "last": "pratchett",
@@ -40,8 +41,11 @@ new_docs = [{
 }]
 coll.insert_many(new_docs)
 
+...end of insert many """
 
-documents = coll.find()
+coll.update_many({"nationality": "british"}, {"$set": {"hair_colour": "pink"}})
+
+documents = coll.find({"nationality": "british"})
 
 for doc in documents:
     print(doc)
